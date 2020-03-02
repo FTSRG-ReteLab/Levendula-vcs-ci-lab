@@ -1,7 +1,8 @@
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.Assert;
+import static org.mockito.Mockito.*;
 
-public class ControllerImplTest{
+public class UnitTest{
 	@Test
 	public void myTest(){
 		TrainControllerImpl tc =  new TrainControllerImpl();
