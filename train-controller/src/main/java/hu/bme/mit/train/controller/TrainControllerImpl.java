@@ -46,7 +46,7 @@ public class TrainControllerImpl implements TrainController {
 		this.step = joystickPosition;		
 	}
 	public void emergencyStop(){
-		this.step = 0;//I have no idea what I'm doing
+		this.step = -1000;//I got you. 
 	}
 
 }
