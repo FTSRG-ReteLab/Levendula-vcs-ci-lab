@@ -11,6 +11,7 @@ public class TrainControllerImpl implements TrainController {
 
 	public TrainControllerImpl() {
 		thread = new Thread() {
+			@Override
 			public void run() {
 				thread.run();
 				try {
