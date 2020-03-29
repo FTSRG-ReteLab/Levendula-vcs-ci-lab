@@ -11,7 +11,7 @@ public class TrainSensorTest {
     TrainController mockTC;
 
     TrainSensor ts;
-    @Before
+   @Before
     public void before() {
         mockTU = mock(TrainUser.class);
         mockTC = mock(TrainController.class);
@@ -22,7 +22,7 @@ public class TrainSensorTest {
     @Test
     public void absoluteUnderMarginCheck() {
         ts.overrideSpeedLimit(-10);
-        when(mockTU.getAlarmState()).thenReturn(true);
+        when(mockTU.getAlarmState()).thenReturn(false);
     }
     @Test
     public void absoluteOverMarginCheck() {
