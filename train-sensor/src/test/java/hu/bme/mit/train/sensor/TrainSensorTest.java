@@ -10,7 +10,7 @@ public class TrainSensorTest {
     TrainUser mockTU;
     TrainController mockTC;
 
-    TrainSensor ts;
+    TrainSensorImpl ts;
    @Before
     public void before() {
         mockTU = mock(TrainUser.class);
@@ -22,35 +22,34 @@ public class TrainSensorTest {
     @Test
     public void absoluteUnderMarginCheck() {
         ts.overrideSpeedLimit(-10);
-        when(mockTU.getAlarmState()).thenReturn(false);
+        verify(mockTU, times(1)).setAlarmState(true);
+        verify(mockTU, times(0)).setAlarmState(false);
     }
     @Test
     public void absoluteOverMarginCheck() {
         ts.overrideSpeedLimit(505);
-        when(mockTU.getAlarmState()).thenReturn(true);
+        verify(mockTU, times(1)).setAlarmState(true);
+        verify(mockTU, times(0)).setAlarmState(false);
     }
     @Test
     public void relativeUnderMarginCheck() {
-        ts.overrideSpeedLimit(99);
-        ts.overrideSpeedLimit(100);
-        when(mockTU.getAlarmState()).thenReturn(false);//change to 100 was successful without alarm flag
-        ts.overrideSpeedLimit(40);
-        when(mockTU.getAlarmState()).thenReturn(true);
+        when(mockTC.getReferenceSpeed()).thenReturn(100);
+        ts.overrideSpeedLimit(40);//set true
+        verify(mockTU, times(1)).setAlarmState(true);
+        verify(mockTU, times(0)).setAlarmState(false);
     }
     @Test
     public void relativeOverMarginCheck() {
-        ts.overrideSpeedLimit(99);
-        ts.overrideSpeedLimit(105);
-        when(mockTU.getAlarmState()).thenReturn(false);//change to 105 was successful without alarm flag
+        when(mockTC.getReferenceSpeed()).thenReturn(105);
         ts.overrideSpeedLimit(160);
-        when(mockTU.getAlarmState()).thenReturn(true);
+        verify(mockTU, times(1)).setAlarmState(true);
+        verify(mockTU, times(0)).setAlarmState(false);
     }
     @Test
     public void correctOverride() {
-        ts.overrideSpeedLimit(199);
-        ts.overrideSpeedLimit(200);
-        when(mockTU.getAlarmState()).thenReturn(false);//change to 200 was successful without alarm flag
+        when(mockTC.getReferenceSpeed()).thenReturn(200);
         ts.overrideSpeedLimit(190);
-        when(mockTU.getAlarmState()).thenReturn(true);
+        verify(mockTU, times(0)).setAlarmState(true);
+        verify(mockTU, times(1)).setAlarmState(false);
     }
 }
