@@ -59,10 +59,10 @@ public class TrainControllerImpl implements TrainController {
 
 	@Override
 	public void setJoystickPosition(int joystickPosition) {
-		if(joystickPosition < 0) this.referenceSpeed -=1;
-		else if(joystickPosition > 0) this.referenceSpeed += 1;
+		//if(joystickPosition < 0) this.referenceSpeed -=1;
+		//else if(joystickPosition > 0) this.referenceSpeed += 1;
 		this.step = joystickPosition;
-		enforceSpeedLimit();
+		//enforceSpeedLimit();
 	}
 	public void emergencyStop(){
 		this.step = -1000;//I got you. 
