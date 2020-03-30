@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="train-interfaces" />
+    <orderEntry type="module" module-name="train.train-interfaces.main" />
   </component>
 </module>
