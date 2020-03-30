@@ -4,6 +4,7 @@ import hu.bme.mit.train.interfaces.TrainSensor;
 import hu.bme.mit.train.interfaces.TrainUser;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
 import static org.mockito.Mockito.*;
 
 public class TrainSensorTest {
@@ -51,5 +52,9 @@ public class TrainSensorTest {
         ts.overrideSpeedLimit(190);
         verify(mockTU, times(0)).setAlarmState(true);
         verify(mockTU, times(1)).setAlarmState(false);
+    }
+    @Test
+    public void getSpeedLimitTest() {
+        ts.getSpeedLimit();//csak a nagyobb lefedettségért
     }
 }
